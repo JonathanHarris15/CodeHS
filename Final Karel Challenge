@@ -1,0 +1,109 @@
+#sub function used to paint background
+def paint_whole_line():
+    while front_is_clear():
+        paint(color['yellow'])
+        move()
+    paint(color['yellow'])
+#basic function that is good to have
+def safe_move():
+    if front_is_clear():
+        move()
+def move_amount(amount):
+    for i in range(amount):
+        move()
+#sub function used to paint background
+def swing_around():
+    if facing_east():
+        turn_left()
+        safe_move()
+        turn_left()
+    else:
+        turn_right()
+        safe_move()
+        turn_right()
+#function used to paint background - requires karel to start in the bottom left corner
+def paint_background():
+    for i in range(10):
+        paint_whole_line()
+        swing_around()
+        paint_whole_line()
+        swing_around()
+#locationing function for first eye
+def go_to_first_eye():
+    move_amount(5)
+    turn_right()
+    move_amount(5)
+#locationing function for second eye
+def go_to_second_eye():
+    turn_left()
+    move_amount(8)
+    turn_right()
+    move()
+    turn_left()
+    move()
+    turn_left()
+#painting the eyes
+def paint_eye():
+    for i in range(3):
+        paint(color['white'])
+        move()
+        turn_left()
+    paint(color['black'])
+    move()
+    turn_left()
+#locationing function for smile
+def go_to_smile():
+    turn_around()
+    move_amount(5)
+    turn_left()
+    move()
+    turn_around()
+#standard function for painting lines
+def paint_line(amount):
+    for i in range(amount):
+        paint(color['black'])
+        move()
+def paint_line_red(amount):
+    for i in range(amount):
+        paint(color['red'])
+        move()        
+#painting the smile
+def make_smile():
+    paint_line(2)
+    turn_left()
+    move()
+    turn_right()
+    paint_line(8)
+    turn_right()
+    move()
+    turn_left()
+    paint_line(2)
+#locationing function for the tounge
+def goto_tounge():
+    turn_around()
+    move_amount(10)
+    turn_right()
+    move_amount(2)
+    turn_right()
+def draw_tounge():
+    paint_line_red(3)
+    turn_left()
+    move()
+    turn_left()
+    move()
+    paint_line_red(3)
+    turn_right()
+    move()
+    turn_right()
+    move_amount(2)
+    paint(color['red'])
+
+paint_background()
+go_to_first_eye()
+paint_eye()
+go_to_second_eye()
+paint_eye()
+go_to_smile()
+make_smile()
+goto_tounge()
+draw_tounge()
